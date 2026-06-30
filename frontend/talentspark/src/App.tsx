@@ -23,4 +23,27 @@ function App() {
       setLoading(false);
     }
   }
-export default App;
+  
+  useEffect(() => {
+      fetchCompanies();
+    }, []);
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    }
+
+    return (
+      <div>
+        <NavBar />
+        <Welcome />
+        <CompanyCard key={companies.id}
+        companies={companies} />
+        <JobCard />
+        <Footer />
+      </div>
+    );
+  }
